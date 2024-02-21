@@ -78,9 +78,13 @@ const funcSong = (i) => {
       }
     
     }}
-    const handleTimePlus = (e) =>{
+    const handleTimePlus = () =>{
     
-        setTime(time + 10);
+        setTime(parseInt(time) + 10);
+        if(time == '')
+        {
+          setTime(10);
+        }
       
     if(start){
        setStart(false);
@@ -92,17 +96,21 @@ const funcSong = (i) => {
     }
 
     const handleTimeMinus = () =>{
-      if(time - 10<4){
-        setTime(4);
-      }else{
-          setTime(time - 10);
+      if(time != ''){
+        if(parseInt(time) - 10<0){
+           setTime(0);
+         }else{
+             setTime(parseInt(time) - 10);
+         }
+       if(start){
+          setStart(false);
+         setTimeout(()=> {
+           setStart(true)
+         }, 100)
+       }
+
       }
-    if(start){
-       setStart(false);
-      setTimeout(()=> {
-        setStart(true)
-      }, 100)
-    }}
+        }
   return (
     <>
     <h1 className={classes.titulo}>Digite intervalo em segundos</h1>
