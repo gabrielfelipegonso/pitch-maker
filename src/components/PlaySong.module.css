@@ -49,6 +49,9 @@
         height: 12vw;
         font-size: 7.2vw;
     }
+    .titulo{
+        font-size: 4vw;
+    }
 }
 @media only screen and (min-width:451px) and (max-width:650px){
      .button{
