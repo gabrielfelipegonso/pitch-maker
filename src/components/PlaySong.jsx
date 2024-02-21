@@ -61,9 +61,32 @@ const funcSong = (i) => {
       setTimeout(()=> {
         setStart(true)
       }, 100)
+    }}
+    const handleTimePlus = (e) =>{
+    
+        setTime(time + 10000);
+      
+    if(start){
+       setStart(false);
+      setTimeout(()=> {
+        setStart(true)
+      }, 100)
     }
      
     }
+
+    const handleTimeMinus = () =>{
+      if(time - 10000<2000){
+        setTime(2000);
+      }else{
+          setTime(time - 10000);
+      }
+    if(start){
+       setStart(false);
+      setTimeout(()=> {
+        setStart(true)
+      }, 100)
+    }}
   return (
     <>
     <input type="number" value= {time/1000} onChange={handleTime}/>
@@ -74,6 +97,8 @@ const funcSong = (i) => {
     <button onClick={handleStop}>
       Stop
     </button>
+    <button  onClick={handleTimePlus}>+10</button>
+    <button  onClick={handleTimeMinus}>-10</button>
     </div>
     
     </>
