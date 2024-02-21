@@ -6,9 +6,9 @@
   font-weight: 700;
 }
 #root {
-  max-width: 1280px;
+  max-width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
@@ -51,4 +51,6 @@ body{
   min-width: 100vw;
   min-height: 100vh;
  background-color:#081d96;
+ padding: 0;
+ margin:0 ;
 }

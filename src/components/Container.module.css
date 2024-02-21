@@ -18,3 +18,22 @@
         height: 90vw;
     }
 }
+@media only screen and (min-width: 450px) and (max-width: 650px){
+    .container{
+        width: 85vw;
+        height: 80vw;
+    }
+    
+}
+@media only screen and (min-width:650px) and (max-width:900px){
+    .container{
+        width: 85vw;
+        height: 80vw;
+    }
+}
+@media only screen and (min-width:900px) and (max-width:1280px){
+    .container{
+        width: 75vw;
+        height: 40vw;
+    }
+}

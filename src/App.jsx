@@ -6,14 +6,13 @@ function App() {
 
 
   return (
-    <div className="body">
+   
         <Container>
          <>
             <PlaySong/>
          </>
       </Container>
 
-    </div>
     
   )
 }
