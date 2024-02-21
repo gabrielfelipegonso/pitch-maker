@@ -5,7 +5,7 @@ export const PlaySong = () => {
   const pitch = ['C4', 'C#4','D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4'];
   const talk = ['dó', 'dó sustenido', 'ré', 'ré sustenido','mi', 'fá', 'fá sustenido', 'sol', 'sol sustenido','lá', 'lá sustenido', 'see' ]
   const [start, setStart] = useState(false);
-  const [time, setTime] = useState(1000);
+  const [time, setTime] = useState(2000);
   const funcTalk = (i, callback) => {
     var mensagem = new SpeechSynthesisUtterance('pt-br');
     mensagem.text = talk[i];
@@ -51,11 +51,18 @@ const funcSong = (i) => {
      
     }
     const handleTime = (e) =>{
-      setTime(e.target.value * 1000);
-      setStart(false);
+      if((e.target.value == 0) || e.target.value == null || e.target.value <= 2){
+        setTime(2000);
+      }else{
+          setTime(e.target.value * 1000);
+      }
+    if(start){
+       setStart(false);
       setTimeout(()=> {
         setStart(true)
       }, 100)
+    }
+     
     }
   return (
     <>
