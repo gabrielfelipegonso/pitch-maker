@@ -6,13 +6,15 @@ function App() {
 
 
   return (
-    <>
-      <Container>
+    <div className="body">
+        <Container>
          <>
             <PlaySong/>
          </>
       </Container>
-    </>
+
+    </div>
+    
   )
 }
 

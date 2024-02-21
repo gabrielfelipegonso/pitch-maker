@@ -1,0 +1,20 @@
+.container{
+  height: 25vw;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #010440;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  box-shadow: 0 0 8px 4px #452a91;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@media only screen and (max-width: 450px){
+    .container{
+        width: 80vw;
+        height: 90vw;
+    }
+}

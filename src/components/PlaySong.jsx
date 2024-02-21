@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import * as Tone from 'tone'
-
+import classes from './PlaySong.module.css'
 export const PlaySong = () => {
   const pitch = ['C4', 'C#4','D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4'];
   const talk = ['dó', 'dó sustenido', 'ré', 'ré sustenido','mi', 'fá', 'fá sustenido', 'sol', 'sol sustenido','lá', 'lá sustenido', 'see' ]
   const [start, setStart] = useState(false);
-  const [time, setTime] = useState(4000);
+  const [time, setTime] = useState(0);
+  const [warning, setWarning] = useState(false);
   const funcTalk = (i, callback) => {
     var mensagem = new SpeechSynthesisUtterance('pt-br');
     mensagem.text = talk[i];
@@ -35,14 +36,19 @@ const funcSong = (i) => {
         
 
             
-     }, time)
+     }, time*1000 + 4000);
     }
       return () => clearInterval(interval);
   }, [start])
 
     const handleClick = () => {
+      if(time >0){
+        setStart(true);
+        setWarning(false);
+      }else {
+        setWarning(true);
+      }
       
-      setStart(true);
         
       
     }
@@ -51,19 +57,19 @@ const funcSong = (i) => {
      
     }
     const handleTime = (e) =>{
-      if((e.target.value == 0) || e.target.value == null || e.target.value <= 4){
-       setTimeout(()=> {
+      if((e.target.value == 0) || e.target.value == null){
+       
 
-        setTime(4000);  
+        setTime(e.target.value.replace(/^0+(?!\.|$)/, ''));  
         if(start){
        setStart(false);
       setTimeout(()=> {
         setStart(true)
       }, 100);
-       }}, 1000);
+       
         
-      }else{
-          setTime(e.target.value * 1000);
+      }}else{
+          setTime(e.target.value.replace(/^0+(?!\.|$)/, ''));
           if(start){
        setStart(false);
       setTimeout(()=> {
@@ -74,7 +80,7 @@ const funcSong = (i) => {
     }}
     const handleTimePlus = (e) =>{
     
-        setTime(time + 10000);
+        setTime(time + 10);
       
     if(start){
        setStart(false);
@@ -86,10 +92,10 @@ const funcSong = (i) => {
     }
 
     const handleTimeMinus = () =>{
-      if(time - 10000<4000){
-        setTime(4000);
+      if(time - 10<4){
+        setTime(4);
       }else{
-          setTime(time - 10000);
+          setTime(time - 10);
       }
     if(start){
        setStart(false);
@@ -99,18 +105,21 @@ const funcSong = (i) => {
     }}
   return (
     <>
-    <input type="number" value= {time/1000} onChange={handleTime}/>
-    <div>
-    <button onClick={handleClick}>
+    <h1 className={classes.titulo}>Digite intervalo em segundos</h1>
+    <input className={`${classes.input} ${warning? classes.red: ''} `} type="number" value= {time} onChange={handleTime}/>
+    <div className={classes.div}>
+    <button className={classes.button} onClick={handleClick}>
         Play song
     </button>
-    <button onClick={handleStop}>
+    <button className={classes.button} onClick={handleStop}>
       Stop
     </button>
-    <button  onClick={handleTimePlus}>+10</button>
-    <button  onClick={handleTimeMinus}>-10</button>
+
     </div>
-    
+    <div className={classes.div}>
+      <button className={classes.button} onClick={handleTimePlus}>+10</button>
+    <button className={classes.button} onClick={handleTimeMinus}>-10</button>
+    </div>
     </>
    
   )

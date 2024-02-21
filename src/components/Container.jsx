@@ -1,8 +1,8 @@
-
+import classes from './Container.module.css'
 
 export const Container = ({children}) => {
   return (
-    <div>
+    <div className={classes.container}>
         {children}
     </div>
   )
